@@ -2,6 +2,7 @@ package com.example.shopping.controller;
 
 import com.example.shopping.dto.AdmDTO;
 import com.example.shopping.service.AdmService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +28,21 @@ public class AdmController {
     @PostMapping("/admSuccess")
     public String admSuccess(@ModelAttribute AdmDTO admDTO) {
         System.out.println("admDTO = " + admDTO);
-        AdmService.save(admDTO);
+        admService.save(admDTO);
         return "admForm";
+    }
+
+    @PostMapping("/admSave")
+    public String admSave(@ModelAttribute AdmDTO admDTO, HttpSession session){
+        AdmDTO loginResult = admService.login(admDTO);
+        if (loginResult != null){
+            //로그인 성공
+            session.setAttribute("admName", loginResult.getAdmName());
+            return "/adm/index";
+        } else {
+            return "/";
+        }
+
     }
 
     @GetMapping("/admOk")
