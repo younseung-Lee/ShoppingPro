@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <title>Hello, world!</title>
+    <title>로그인</title>
 </head>
 <body>
 <!--메뉴시작-->
@@ -52,14 +52,14 @@
 </nav>
 <!--메뉴끝-->
 <!--메인이미지-->
-<!--<div class="jumbotron" style="background-image:url('https://cdn.pixabay.com/photo/2016/04/20/19/47/wolves-1341881_1280.jpg');background-size:100%;">-->
-<!--    <div class="container">-->
-<!--        <h1 class="display-4 text-white">Hello, world!</h1>-->
-<!--        <p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>-->
-<!--        <hr class="my-4">-->
-<!--        <p class="text-white">It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="jumbotron" style="background-image:url('https://cdn.pixabay.com/photo/2016/04/20/19/47/wolves-1341881_1280.jpg');background-size:100%;">
+    <div class="container">
+        <h1 class="display-4 text-white">Hello, world!</h1>
+        <p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        <p class="text-white">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    </div>
+</div>
 <!--메인이미지 끝-->
 
 <!--최신 상품 목록 -->
@@ -67,25 +67,30 @@
     <div class="row">
         <div class="col text-center mb-2"><h2>로그인</h2></div>
     </div>
-<!--form문이 들어가는 자리-->
-    <form method="post" action="/member/save">
-        <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
-            <div class="col-sm-10">
-                <input type="text"  class="form-control" id="staticEmail"  placeholder="아이디를 입력하세요" required
-                name="userId">
+    <!--form문이 들어자는 자리 -->
+
+        <form method="post" action="/member/save">
+            <div class="form-group row">
+                <label for="inputId" class="col-sm-2 col-form-label">이름</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputId" placeholder="아이디를 입력하세요" required
+                           name="userId">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요" required
-                name="userPass">
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요" required
+                    name="userPass">
+                </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
-    </form>
-<!--form문 끝-->
+            <div style="display: flex; justify-content: center">
+            <button type="submit" class="btn btn-primary">로그인</button>
+            </div>
+        </form>
+
+    <!--form문 끝 -->
+
 </div>
 <!--최신 상품 목록 끝-->
 

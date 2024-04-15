@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class GoodsController {
-    @GetMapping("/goods")
-    public String goods(){
-        return "goods";
-    }
-
     @GetMapping("/goods/detail")
     public String goods_detail() {
         return "/goods/detail";
@@ -22,7 +17,7 @@ public class GoodsController {
     }
 
     @GetMapping("/goods/qna")
-    public String goods_qna (){
+    public String goods_qna(){
         return "/goods/qna";
     }
 }
