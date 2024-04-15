@@ -2,18 +2,18 @@ package com.example.shopping.controller;
 
 
 import com.example.shopping.dto.AdmDTO;
+import com.example.shopping.dto.GoodsDTO;
 import com.example.shopping.dto.NoticeDTO;
 import com.example.shopping.service.AdmService;
+import com.example.shopping.service.GoodsService;
 import com.example.shopping.service.NoticeService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.List;
 
 @Controller
@@ -22,6 +22,7 @@ public class AdmController {
     //생성자 주입
     private final AdmService admService;
     private final NoticeService noticeService;
+    private final GoodsService goodsService;
 
     //임포트?
     @GetMapping("/adm/notice")
@@ -40,7 +41,7 @@ public class AdmController {
     public String noticeSave(@ModelAttribute NoticeDTO noticeDTO){
         System.out.println("noticeDTO =" + noticeDTO);
         noticeService.save(noticeDTO); //noticeDTO를 서비스에 save시키겠다
-        return "/adm/noticeList";
+        return "redirect:/adm/noticeList";
     }
 
     @GetMapping("/adm")
@@ -90,5 +91,20 @@ public class AdmController {
     @GetMapping("/adm/goodsWrite")
     public String admGoodsWrite(){
         return "/adm/goodsWrite";
+    }
+
+    @PostMapping("/adm/goodsSave")
+    public String goodsSave(@ModelAttribute GoodsDTO goodsDTO){
+        System.out.println("goodsDTO =" + goodsDTO);
+        goodsService.save(goodsDTO);
+        return "/";
+    }
+
+    @GetMapping("/adm/noticeDetail/{id}")
+    public String findById(@PathVariable Long id, Model model){
+        noticeService.updateHits(id);
+        NoticeDTO noticeDTO = noticeService.findById(id);
+        model.addAttribute("notice", noticeDTO);
+        return "/adm/noticedetail";
     }
 }
