@@ -1,10 +1,13 @@
 package com.example.shopping.service;
 
 import com.example.shopping.dto.GoodsDTO;
+import com.example.shopping.dto.NoticeDTO;
 import com.example.shopping.entity.GoodsEntity;
 import com.example.shopping.entity.GoodsFileEntity;
+import com.example.shopping.entity.NoticeEntity;
 import com.example.shopping.repository.GoodsFileRepository;
 import com.example.shopping.repository.GoodsRepository;
+import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,12 +17,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class GoodsService {
     private final GoodsRepository goodsRepository;
     private final GoodsFileRepository goodsFileRepository;
+
+    public GoodsDTO findById(Long id) {
+        Optional<GoodsEntity> optionalGoodsEntity = goodsRepository.findById(id);
+        if (optionalGoodsEntity.isPresent()){
+            GoodsEntity goodsEntity = optionalGoodsEntity.get();
+            GoodsDTO goodsDTO = GoodsDTO.toGoodsDTO(goodsEntity);
+            return goodsDTO;
+        } else {
+            return null;
+        }
+    }
 
     public void save(GoodsDTO goodsDTO) throws IOException {
         if (goodsDTO.getGoodsFile().isEmpty()) { //첨부파일이 없다면

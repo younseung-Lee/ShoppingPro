@@ -24,4 +24,6 @@ public class HomeController {
         model.addAttribute("goodsList", goodsDTOList);
         return "index";
     }
+
+
 }
