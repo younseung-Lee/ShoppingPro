@@ -1,5 +1,6 @@
 package com.example.shopping.dto;
 
+import com.example.shopping.entity.GoodsEntity;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,4 +25,26 @@ public class GoodsDTO {
     private String originalFileName;
     private String storedFileName;
     private int fileAttached; //파일첨부
+
+    public static GoodsDTO toGoodsDTO(GoodsEntity goodsEntity) {
+        GoodsDTO goodsDTO = new GoodsDTO();
+        goodsDTO.setId(goodsEntity.getId());
+        goodsDTO.setGoodsCategory(goodsEntity.getGoodsCategory());
+        goodsDTO.setGoodsName(goodsEntity.getGoodsName());
+        goodsDTO.setGoodsCost(goodsEntity.getGoodsCost());
+        goodsDTO.setGoodsState(goodsEntity.getGoodsState());
+        goodsDTO.setGoodsMemo(goodsEntity.getGoodsMemo());
+        goodsDTO.setGoodsCreatedTime(goodsEntity.getCreatedTime());
+        goodsDTO.setGoodsUpdateTime(goodsEntity.getUpdatedTime());
+        if (goodsEntity.getFileAttached() == 0) {
+            goodsDTO.setFileAttached(goodsEntity.getFileAttached());
+        } else {
+            goodsDTO.setFileAttached(goodsEntity.getFileAttached());
+            goodsDTO.setOriginalFileName(goodsEntity.getGoodsFileEntityList().get(0).getOriginalFilename());
+            goodsDTO.setStoredFileName(goodsEntity.getGoodsFileEntityList().get(0).getStoredFilename());
+
+        }
+        return goodsDTO;
+    }
 }
+

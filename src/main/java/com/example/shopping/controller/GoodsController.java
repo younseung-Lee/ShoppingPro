@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class GoodsController {
-    @GetMapping("/goods/detail")
+    @GetMapping("/goods/detail/{id}")
     public String goods_detail() {
-        return "/goods/detail";
+        return "/goods/detail/{id}";
     }
 
     @PostMapping("/goods/buy")

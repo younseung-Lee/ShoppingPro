@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -94,7 +95,7 @@ public class AdmController {
     }
 
     @PostMapping("/adm/goodsSave")
-    public String goodsSave(@ModelAttribute GoodsDTO goodsDTO){
+    public String goodsSave(@ModelAttribute GoodsDTO goodsDTO) throws IOException {
         System.out.println("goodsDTO =" + goodsDTO);
         goodsService.save(goodsDTO);
         return "/";
