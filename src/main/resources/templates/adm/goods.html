@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -57,17 +57,17 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">상품이름</th>
+            <th scope="col">상품내용</th>
+            <th scope="col">상품가격</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+        <tr th:each="goods : ${goodsList}">
+            <td th:text="${goods.id}"></td>
+            <td><a th:href="@{/goods/{id}(id=${goods.id})}" th:text="${goods.goodsName}"></a></td>
+            <td th:text="${goods.goodsMemo}"></td>
+            <td th:text="${goods.goodsCost}"></td>
         </tr>
         </tbody>
     </table>
@@ -80,8 +80,7 @@
 <!--푸터시작-->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <h1 class="display-4">중고쇼핑몰</h1><a href="/adm">관리자모드</a>
     </div>
 </div>
 

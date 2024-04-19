@@ -23,7 +23,7 @@ public class NoticeService {
 
     //페이지에서 리스트 형태로 보여주기 위해 Repository에서 모든 Entity의 데이터를 검색하여 DTO로 다시 변경해주어야 한다.
     public List<NoticeDTO> findAll() {
-        List<NoticeEntity> noticeEntityList = noticeRepository.findAll();
+        List<NoticeEntity> noticeEntityList = noticeRepository.findAllDesc();
         List<NoticeDTO> noticeDTOList = new ArrayList<>();
         //가져온 DTO를 리스트에 담아서 for문을 통해 리스트에 추가되게 함
         for (NoticeEntity noticeEntity: noticeEntityList){

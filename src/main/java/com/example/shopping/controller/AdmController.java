@@ -3,6 +3,7 @@ package com.example.shopping.controller;
 
 import com.example.shopping.dto.AdmDTO;
 import com.example.shopping.dto.GoodsDTO;
+import com.example.shopping.dto.MemberDTO;
 import com.example.shopping.dto.NoticeDTO;
 import com.example.shopping.service.AdmService;
 import com.example.shopping.service.GoodsService;
@@ -31,6 +32,12 @@ public class AdmController {
         List<NoticeDTO> noticeDTOList = noticeService.findAll();
         model.addAttribute("noticeList", noticeDTOList);
         return "/adm/noticeList";
+    }
+    @GetMapping("/adm/goods")
+    public String admGoods(Model model){
+        List<GoodsDTO> goodsDTOList = goodsService.findAll();
+        model.addAttribute("goodsList", goodsDTOList);
+        return "/adm/goods";
     }
 
     @GetMapping("/adm/noticeWrite")
@@ -85,10 +92,7 @@ public class AdmController {
         return "/adm/index";
     }
 
-    @GetMapping("/adm/goods")
-    public String admGoods(){
-        return "/adm/goods";
-    }
+
     @GetMapping("/adm/goodsWrite")
     public String admGoodsWrite(){
         return "/adm/goodsWrite";

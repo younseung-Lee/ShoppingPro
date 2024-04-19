@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <title>회원가입</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <title>Hello, world!</title>
 </head>
 <body>
 <!--메뉴시작-->
@@ -45,81 +46,160 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
     </div>
   </div>
 </nav>
 <!--메뉴끝-->
-<!--메인이미지-->
-<div class="jumbotron" style="background-image:url('https://cdn.pixabay.com/photo/2016/04/20/19/47/wolves-1341881_1280.jpg');background-size:100%;">
-  <div class="container">
-    <h1 class="display-4 text-white">Hello, world!</h1>
-    <p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-4">
-    <p class="text-white">It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  </div>
-</div>
-<!--메인이미지 끝-->
 
 <!--최신 상품 목록 -->
 <div class="container my-5">
   <div class="row">
     <div class="col text-center mb-2"><h2>회원가입</h2></div>
   </div>
-  <!--form문이 들어자는 자리 -->
+  <!--form문이 들어가는 자리-->
 
-  <form method="post" action="/member/join">
-    <div class="form-group row">
-      <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
+  <form method="post" action="/member/join" name="join">
+    <div class="form-group row my-3" >
+      <label for="userId" class="col-sm-2 col-form-label">아이디</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputId" placeholder="아이디를 입력하세요" required
-               name="userId">
+        <input type="text"  class="form-control" id="userId" placeholder="아이디를 입력하세요" required
+               name="userId" onblur="idCheck()" autocomplete="off"><br>
+        <p id="check-result"></p>
+
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row my-3">
       <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
       <div class="col-sm-10">
         <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요" required
-               name="userPass">
+               name="userPass" autocomplete="off">
       </div>
     </div>
-    <div class="form-group row">
-      <label for="inputName" class="col-sm-2 col-form-label">이름</label>
+    <div class="form-group row my-3">
+      <label for="staticName" class="col-sm-2 col-form-label">이름</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputName" placeholder="이름을 입력하세요" required
-               name="userName">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPhone" class="col-sm-2 col-form-label">전화번호</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputPhone" placeholder="전화번호를 입력하세요" required
-               name="userPhone">
+        <input type="text"  class="form-control" id="staticName" placeholder="이름을 입력하세요" required
+               name="userName" autocomplete="off">
       </div>
     </div>
 
-    <div class="form-group row">
-      <label for="inputEmail" class="col-sm-2 col-form-label">이메일</label>
+    <div class="form-group row my-3">
+      <label for="staticPhone" class="col-sm-2 col-form-label">전화번호</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="이메일을 입력하세요" required
-               name="userEmail">
+        <input type="text"  class="form-control" id="staticPhone" placeholder="전화번호를 입력하세요" required
+               name="userPhone" autocomplete="off">
       </div>
     </div>
 
-    <div class="form-group row">
-      <label for="inputIntro" class="col-sm-2 col-form-label">소개</label>
+    <div class="form-group row my-3">
+      <label for="staticEmail" class="col-sm-2 col-form-label">이메일</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputIntro" placeholder="소개를 입력하세요" required
-               name="userIntro">
+        <input type="text"  class="form-control" id="staticEmail" placeholder="이메일을 입력하세요" required
+               name="userEmail" autocomplete="off">
       </div>
     </div>
 
+    <div class="form-group row my-3">
+      <label for="sample4_postcode" class="col-sm-2 col-form-label">우편번호</label>
+      <div class="col-sm-10">
+        <input type="text"  class="form-control" id="sample4_postcode" required
+               name="userPost">
+        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+      </div>
+    </div>
 
+    <div class="form-group row my-3">
+      <label for="sample4_roadAddress" class="col-sm-2 col-form-label">주소</label>
+      <div class="col-sm-10">
+        <input type="text"  class="form-control" id="sample4_roadAddress"  required
+               name="userAddress1" autocomplete="off">
+        <input type="hidden" id="sample4_jibunAddress" autocomplete="off" placeholder="지번주소">
+      </div>
+    </div>
+    <div class="form-group row my-3">
+      <label for="sample4_detailAddress" class="col-sm-2 col-form-label">상세주소</label>
+      <div class="col-sm-10">
+        <span id="guide" style="color:#999;display:none"></span>
+        <input type="text"  class="form-control" id="sample4_detailAddress" placeholder="상세주소를 입력하세요" required
+               name="userAddress2">
+        <input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
+      </div>
+    </div>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+      //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+      function sample4_execDaumPostcode() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                  // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var roadAddr = data.roadAddress; // 도로명 주소 변수
+                  var extraRoadAddr = ''; // 참고 항목 변수
+
+                  // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                  // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                  if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                      extraRoadAddr += data.bname;
+                  }
+                  // 건물명이 있고, 공동주택일 경우 추가한다.
+                  if(data.buildingName !== '' && data.apartment === 'Y'){
+                     extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                  }
+                  // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                  if(extraRoadAddr !== ''){
+                      extraRoadAddr = ' (' + extraRoadAddr + ')';
+                  }
+
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('sample4_postcode').value = data.zonecode;
+                  document.getElementById("sample4_roadAddress").value = roadAddr;
+                  document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                  // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                  if(roadAddr !== ''){
+                      document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                  } else {
+                      document.getElementById("sample4_extraAddress").value = '';
+                  }
+
+                  var guideTextBox = document.getElementById("guide");
+                  // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                  if(data.autoRoadAddress) {
+                      var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                      guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                      guideTextBox.style.display = 'block';
+
+                  } else if(data.autoJibunAddress) {
+                      var expJibunAddr = data.autoJibunAddress;
+                      guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                      guideTextBox.style.display = 'block';
+                  } else {
+                      guideTextBox.innerHTML = '';
+                      guideTextBox.style.display = 'none';
+                  }
+              }
+          }).open();
+      }
+    </script>
+
+    <div class="form-group row my-3">
+      <label for="staticIntro" class="col-sm-2 col-form-label">자기소개</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="staticIntro" rows="3" autocomplete="off" name="userIntro"></textarea>
+      </div>
+    </div>
     <button type="submit" class="btn btn-primary">회원가입</button>
   </form>
 
-  <!--form문 끝 -->
+
+
+  <!--form문 끝-->
+
+
 
 </div>
 <!--최신 상품 목록 끝-->
@@ -134,9 +214,39 @@
 
 <!--푸터 끝-->
 
+<script>
+  const idCheck = () => {
+      const userId = document.getElementById("userId").value;
+      const checkResult = document.getElementById("check-result");
+      console.log("입력값:",userId);
+      $.ajax({
+          type:"post",
+          url: "/member/id-check",
+          data: {
+              "userId":userId
+          },
+          success:function(res){
+              if(res == "ok"){
+                console.log("성공", res);
+                checkResult.style.color = "green";
+                checkResult.innerHTML = "사용가능한 아이디입니다";
+              }else{
+                  checkResult.style.color = "red";
+                  checkResult.innerHTML = "이미 사용중인 아이디입니다.";
+              }
+
+          },
+          error:function(err){
+              console.log("에러발생", err);
+          }
+
+      });
+
+  }
+</script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
 </html>
